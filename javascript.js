@@ -152,9 +152,11 @@ let navService = {
                 let lowestTemperature = Math.round(sortedTemArray[0])
                 // console.log(lowestTemperature) //lowest temperature
                 
-                let weekendArray = ["Tomorrow", "Monday", "Tuesday", "Wednesday", "Thursday", "Firday", "Saturday", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Firday", "Saturday", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Firday", "Saturday", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Firday", "Saturday", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Firday", "Saturday", "Sunday"]
+                let weekendArray = ["Tomorrow", "Monday", "Tuesday", "Wednesday", "Thursday", "Firday", "Saturday", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Firday", "Saturday", "Sunday"]
                 let todaysDate = new Date();
+                console.log(todaysDate)
                 let todaysDay = todaysDate.getDay()
+                console.log(todaysDay)
                 let weatherDay= weekendArray[todaysDay + dayCounter4]
 
 
