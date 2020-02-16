@@ -1,4 +1,4 @@
-console.log("live") //API personalized key under
+// console.log("live") //API personalized key under
 // https://api.openweathermap.org/data/2.5/forecast?q=skopje&units=metric&APPID=02c381cd2d2a71e1d009fd2998f2dca8
 
 let navService = {
@@ -26,7 +26,7 @@ let navService = {
         page.style.display = "block";
     }, 
     createEventListener: function(allCityNames){
-        for(let i = 0; i < this.navItems.length; i++){
+        for (let i = 0; i < this.navItems.length; i++){
             this.navItems[i].addEventListener("click", function(){
                 // this in addEventListener points to the item that has the event listener
                 navService.activeNav(this);
@@ -56,46 +56,46 @@ let navService = {
     getTemperature: function(response){
                let  tempArray = response.list
                 let combinedTempArray = []
-                for (i = 0; i < 8; i++) { // DAY 1
+                for (let i = 0; i < 8; i++) { // DAY 1
                     combinedTempArray.push(tempArray[i].main.temp_max)
                     combinedTempArray.push(tempArray[i].main.temp_min)
                    };
                 let sortedTemArray = combinedTempArray.sort((a, b) => a-b)
                 let highestTemperature = Math.round(sortedTemArray[sortedTemArray.length - 1])
-                console.log(highestTemperature) //highest temperature
+                // console.log(highestTemperature) //highest temperature
                 let lowestTemperature = Math.round(sortedTemArray[0])
-                console.log(lowestTemperature) //lowest temperature
+                // console.log(lowestTemperature) //lowest temperature
                 let tempTotal = 0
-                for (i = 0; i < 16; i++) {
+                for (let i = 0; i < 16; i++) {
                     tempTotal = tempTotal  + combinedTempArray[i]
                        };
                 let tempAverage = Math.round(tempTotal/16)
-                console.log(tempAverage) // average temperature
+                // console.log(tempAverage) // average temperature
                        //humidity
                 let humidityArray = [];
                 humidityArray.push = response.list
                 let dailyHumidityArray = []
-                for (i = 0; i < 8; i++) {
+                for (let i = 0; i < 8; i++) {
                     dailyHumidityArray.push(humidityArray.push[i].main.humidity)
                    };
                    let sortedHumidityArray = dailyHumidityArray.sort((a, b) => a-b)
                     let highestHumidity = Math.round(sortedHumidityArray[sortedHumidityArray.length - 1])
-                    console.log(highestHumidity) //highest humidity
+                    // console.log(highestHumidity) //highest humidity
                     let lowestHumidity = Math.round(sortedHumidityArray[0])
-                    console.log(lowestHumidity) //lowest humidity
+                    // console.log(lowestHumidity) //lowest humidity
                     let totalHumidity = 0
-                    for (i = 0; i < 8; i++) {
+                    for (let i = 0; i < 8; i++) {
                         totalHumidity = totalHumidity  + dailyHumidityArray[i]
                            };
                     let averageHumidity = Math.round(totalHumidity/8)
-                    console.log(averageHumidity)
+                    // console.log(averageHumidity) average humidity
                this.weatherCity.innerHTML = `<h1>Weather for ${weatherService.city}</h1><h4> Welcome to an above average weather app! </h4>`
                this.hourlyWeatherCity.innerHTML = `<h1>Hourly Data for ${weatherService.city}</h1>`
                 this.printHomeTables(highestTemperature,tempAverage,lowestTemperature,highestHumidity,averageHumidity,lowestHumidity)  
                 
     },
-
-    printHomeTables: function(highestTemperature,tempAverage,lowestTemperature,highestHumidity,averageHumidity,lowestHumidity){
+    //just printing a normal table
+    printHomeTables: function(highestTemperature,tempAverage,lowestTemperature,highestHumidity,averageHumidity,lowestHumidity){ //getting the values from getTemperature method
         this.temperatureToday.innerHTML =
            `
            <h2>Today's Weather</h2>
@@ -136,20 +136,20 @@ let navService = {
           `
             
     },
-
-    getWeekWeather: function(response,forCounter1,forCounter2,iconCounter3,dayCounter4){
+    //printing tables with recursive function/method
+    getWeekWeather: function(response,forCounter1,forCounter2,iconCounter3,dayCounter4){ // getting the response and hardcoded counter values
         let tempArray = response.list;
         let combinedTempArray = [];
         
-                for (i = forCounter1; i < forCounter2; i++) {
+                for (let i = forCounter1; i < forCounter2; i++) {
                     combinedTempArray.push(tempArray[i].main.temp_max)
                     combinedTempArray.push(tempArray[i].main.temp_min)
                    };
                 let sortedTemArray = combinedTempArray.sort((a, b) => a-b)
                 let highestTemperature = Math.round(sortedTemArray[sortedTemArray.length - 1])
-                console.log(highestTemperature) //highest temperature
+                // console.log(highestTemperature) //highest temperature
                 let lowestTemperature = Math.round(sortedTemArray[0])
-                console.log(lowestTemperature) //lowest temperature
+                // console.log(lowestTemperature) //lowest temperature
                 
                 let weekendArray = ["Tomorrow", "Monday", "Tuesday", "Wednesday", "Thursday", "Firday", "Saturday", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Firday", "Saturday", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Firday", "Saturday", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Firday", "Saturday", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Firday", "Saturday", "Sunday"]
                 let todaysDate = new Date();
@@ -174,9 +174,9 @@ let navService = {
                
               
                 if(forCounter2 > 39) return  ''
-                if(forCounter2 < 39) return this.getWeekWeather(response, forCounter1+8, forCounter2+8,iconCounter3+8,dayCounter4+1);
+                if(forCounter2 < 39) return this.getWeekWeather(response, forCounter1+8, forCounter2+8,iconCounter3+8,dayCounter4+1); //increasing the counter values
         },
-
+    //pringing table with a for loop
     getHourlyWeather: function(response){
         let combinedHourlyArray = response.list
         let hourlyTempArray = [];
@@ -185,7 +185,7 @@ let navService = {
         let dateArray = [];
         let humidityArray = [];
         let windSpeedArray = [];
-        for (i = 0; i < 8; i++) { 
+        for (let i = 0; i < 8; i++) { 
             hourlyTempArray.push(Math.round(combinedHourlyArray[i].main.temp_max))
             iconArray.push(combinedHourlyArray[i].weather[0].icon)
             descriptionArray.push(combinedHourlyArray[i].weather[0].description)
@@ -194,16 +194,16 @@ let navService = {
             windSpeedArray.push(combinedHourlyArray[i].wind.speed) 
            }
 
-           for(i=0; i <8; i++){
+           for (let i=0; i <8; i++){
            this.hourlyResult.innerHTML += 
            `
            <div class="row">
-            <div class="col-md-2 tableText" > <img src="http://openweathermap.org/img/w/${iconArray[i]}.png" alt=""></img>  </div>
-            <div class="col-md-2 tableText"> <b> It looks like</b> <br> ${descriptionArray[i]}  </div>
-            <div class="col-md-2 tableText"> <b> Houlry weather</b> <br> ${dateArray[i]} </div>
-            <div class="col-md-2 tableText"> <b> Temperature of</b> <br> ${hourlyTempArray[i]}°C   </div>
-            <div class="col-md-2 tableText"> <b> Humidity of </b> <br>${humidityArray[i]}%  </div>
-            <div class="col-md-2 tableText"> <b> Wind speed of </b> <br>${windSpeedArray[i]} m/s </div>
+            <div class="col-md-2 tableText2" > <img src="http://openweathermap.org/img/w/${iconArray[i]}.png" alt=""></img>  </div>
+            <div class="col-md-2 tableText2"> <b> It looks like</b> <br> ${descriptionArray[i]}  </div>
+            <div class="col-md-2 tableText2"> <b> Houlry weather</b> <br> ${dateArray[i]} </div>
+            <div class="col-md-2 tableText2"> <b> Temperature of</b> <br> ${hourlyTempArray[i]}°C   </div>
+            <div class="col-md-2 tableText2"> <b> Humidity of </b> <br>${humidityArray[i]}%  </div>
+            <div class="col-md-2 tableText2"> <b> Wind speed of </b> <br>${windSpeedArray[i]} m/s </div>
         </div>
           `
     
@@ -223,11 +223,10 @@ let weatherService = {
         $.ajax({
             url: `${this.apiUrl}?q=${this.city}&units=metric&APPID=${this.apiKey}`,
             success: function (response) {
-                console.log('The request succeeded!');
-                console.log(response);
+                console.log('The request succeeded! 1');
                 navService.getTemperature(response);
                 navService.getHourlyWeather(response);
-                navService.getWeekWeather(response,8,16,0,1);
+                navService.getWeekWeather(response,8,16,0,1); //hardcoding the counters for the recursive function
             }, 
             error: function(response){
                 console.log('The request failed!');
@@ -240,13 +239,13 @@ let weatherService = {
 navService.createEventListener();
 weatherService.getData()
 
-let cityNameCall = {
+let cityNameCall = { //getting all the city names in the world properly spelled(use google to find the correct spelling)
     apiUrl: "https://raw.githubusercontent.com/lutangar/cities.json/master/cities.json",
     getCity: function(){
         $.ajax({
             url: this.apiUrl,
             success: function (response) {
-                console.log('The request succeeded!');
+                console.log('The request succeeded! 2');
                 
                 let resultParsed = JSON.parse(response);
                
@@ -254,8 +253,8 @@ let cityNameCall = {
                 resultParsed.forEach(function (resultParsed) {
                     allCityNames.push(resultParsed.name);
                 });
-                console.log(allCityNames)
-        navService.createEventListener(allCityNames)
+                // console.log(allCityNames) all city name array
+                navService.createEventListener(allCityNames)
 
                 
             }, 

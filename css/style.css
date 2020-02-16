@@ -3,8 +3,9 @@
 body {
     background-image: url("../img/weather-backgroud.jpg");
     background-repeat: no-repeat;
-    background-size: 140%;
-    
+    background-size: cover;
+    color: white;
+    text-shadow: 2px 2px black;
 }
 #container{
     size: 150%;
@@ -28,11 +29,14 @@ body {
 
 table, th, td {
     border: 1px solid black;
+    text-shadow: 2px 2px black;
   }
 
 /* it hides all the other siblings but the first one */
 .page + .page{ 
 display: none;
+color: black !important;
+text-shadow: none !important;
 }
 
 .table{
@@ -42,16 +46,19 @@ display: none;
 .table td, .table th{
     padding: .75rem;
     vertical-align: top;
-    border: 4px solid black;
+    border: black;
+    border: none;
+    color: white;
 }
 .table thead th {
     vertical-align: bottom;
-    border: 4px solid black;
-
+    border: black;
+    border: none;
+    color: white;
 }
 
 #temperatureToday{
-
+    text-align: center;
     padding-top: 5%;
     padding-left: 15%;
     padding-right: 10%;
@@ -69,16 +76,33 @@ display: none;
 }
 
 .tableText{
-    color: black;
-    font-size: 1.2em;
+    color: white;
+    font-size: 2em;
+    
 }
+
+.tableText2{
+    color: black !important;
+    font-size: 1.2em;
+    text-align: center;
+}
+
 #hourlyResult{
     text-align: center;
     position: relative;
     right: 5%;
     top: 10%;
+    color: black !important;
 }
 #hourlyWeatherCity{
     text-align: center;
 }
 
+#navbarSupportedContent{
+color: whitesmoke;
+text-shadow: none !important;
+}
+
+a {
+    color: black;
+}
