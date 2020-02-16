@@ -47,6 +47,7 @@ let navService = {
            } 
            navService.temperatureToday.innerHTML ='';
            navService.temperatureWeek.innerHTML ='';
+           navService.hourlyResult.innerHTML ='';
             weatherService.getData();
             
     })
@@ -185,7 +186,7 @@ let navService = {
         let humidityArray = [];
         let windSpeedArray = [];
         for (i = 0; i < 8; i++) { 
-            hourlyTempArray.push(combinedHourlyArray[i].main.temp_max)
+            hourlyTempArray.push(Math.round(combinedHourlyArray[i].main.temp_max))
             iconArray.push(combinedHourlyArray[i].weather[0].icon)
             descriptionArray.push(combinedHourlyArray[i].weather[0].description)
             dateArray.push(combinedHourlyArray[i].dt_txt.slice(10))  
