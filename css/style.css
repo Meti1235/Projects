@@ -7,8 +7,10 @@ body {
     color: white;
     text-shadow: 2px 2px black;
 }
-#container{
-    size: 150%;
+
+#container {
+max-width: 100%;
+
 }
 #logo{
     height: 40px;
@@ -59,7 +61,6 @@ text-shadow: none !important;
 
 #temperatureToday{
     text-align: center;
-    padding-top: 5%;
     padding-left: 15%;
     padding-right: 10%;
    
@@ -67,10 +68,11 @@ text-shadow: none !important;
 
 #weatherCity {
     text-align: center;
+    margin: 2rem 0 4rem;
 }
 
 #temperatureWeek{
-    padding-top: 5%;
+    
     padding-left: 10%;
     /* transform: rotate(90deg)  it rotates anything good to know!*/
 }
@@ -80,7 +82,9 @@ text-shadow: none !important;
     font-size: 2em;
     
 }
-
+h2{
+    text-align: center !important;
+}
 .tableText2{
     color: black !important;
     font-size: 1.2em;
@@ -91,11 +95,12 @@ text-shadow: none !important;
     text-align: center;
     position: relative;
     right: 5%;
-    top: 10%;
     color: black !important;
 }
 #hourlyWeatherCity{
+    
     text-align: center;
+    margin-bottom: 3rem;
 }
 
 #navbarSupportedContent{

@@ -11,10 +11,10 @@
 </head>
 <body >
 
-    <header>
+    <header class="container">
       
         <div class="row">
-        <nav class="navbar navbar-expand-lg navbar-dark bg-primary col-12">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
             <img id="logo" src="img/cloudy.svg" alt="">
             <a class="navbar-brand" href="img/cloudy.svg"></a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -43,8 +43,8 @@
         
                
     </header>
-
-    <div id="pages">
+    
+    <div id="pages" class="container">
   
       <div class="page">
         <h1 id="weatherCity"></h1>
@@ -57,8 +57,8 @@
       <div class="page">
         <h1 id="hourlyWeatherCity"></h1>
         <br>
-        <p> <strong>Here you can read the hourly weather report for the following days. Keep in mind that it is not actually every
-          hour, but every 3 - 5 hours! </strong></p>  
+        <p style="font-size: 1em; text-align: center;"> <strong>Here you can read the hourly weather report for the following days. Keep in mind that it is not actually every
+          hour, but every 3 hours! </strong></p>  
           <div id="hourlyResult"> </div>
       </div>
 
@@ -71,6 +71,7 @@
       </div>
       
     </div>
+
 
 
 

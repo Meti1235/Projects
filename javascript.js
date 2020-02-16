@@ -54,7 +54,7 @@ let navService = {
     },
 
     getTemperature: function(response){
-               let  tempArray = response.list
+                let  tempArray = response.list
                 let combinedTempArray = []
                 for (let i = 0; i < 8; i++) { // DAY 1
                     combinedTempArray.push(tempArray[i].main.temp_max)
@@ -94,6 +94,7 @@ let navService = {
                 this.printHomeTables(highestTemperature,tempAverage,lowestTemperature,highestHumidity,averageHumidity,lowestHumidity)  
                 
     },
+    
     //just printing a normal table
     printHomeTables: function(highestTemperature,tempAverage,lowestTemperature,highestHumidity,averageHumidity,lowestHumidity){ //getting the values from getTemperature method
         this.temperatureToday.innerHTML =
