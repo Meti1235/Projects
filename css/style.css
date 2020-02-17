@@ -1,5 +1,4 @@
 
-
 body {
     background-image: url("../img/weather-backgroud.jpg");
     background-repeat: no-repeat;
@@ -30,7 +29,7 @@ max-width: 100%;
 }
 
 table, th, td {
-    border: 1px solid black;
+    border: 1px solid white;
     text-shadow: 2px 2px black;
   }
 
@@ -43,18 +42,21 @@ text-shadow: none !important;
 
 .table{
     width: 300px;
+    margin-bottom: 2rem;
 }
 
 .table td, .table th{
     padding: .75rem;
     vertical-align: top;
-    border: black;
+    border: white;
     border: none;
     color: white;
 }
+
+
 .table thead th {
     vertical-align: bottom;
-    border: black;
+    border: white;
     border: none;
     color: white;
 }
