@@ -1,4 +1,3 @@
-
 body {
     background-image: url("../img/weather-backgroud.jpg");
     background-repeat: no-repeat;
@@ -8,14 +7,15 @@ body {
 }
 
 #container {
-max-width: 100%;
+    max-width: 100%;
 
 }
-#logo{
+
+#logo {
     height: 40px;
 }
 
-#citySearchBtn{
+#citySearchBtn {
     border: 2px solid;
     border-color: #fff;
     color: #fff;
@@ -23,28 +23,28 @@ max-width: 100%;
     padding: 5px 25px 5px 25px;
 }
 
-#citySearchBtn:hover{
-    background-color: #fff ;
+#citySearchBtn:hover {
+    background-color: #fff;
     color: #007bff;
 }
 
 table, th, td {
     border: 1px solid white;
     text-shadow: 2px 2px black;
-  }
+}
 
 /* it hides all the other siblings but the first one */
-.page + .page{ 
-display: none;
+.page + .page {
+    display: none;
 
 }
 
-.table{
+.table {
     width: 300px;
     margin-bottom: 2rem;
 }
 
-.table td, .table th{
+.table td, .table th {
     padding: .75rem;
     vertical-align: top;
     border: white;
@@ -60,11 +60,11 @@ display: none;
     color: white;
 }
 
-#temperatureToday{
+#temperatureToday {
     text-align: center;
     padding-left: 15%;
     padding-right: 10%;
-   
+
 }
 
 #weatherCity, #hourlyWeatherCity, #aboutWeatherApp {
@@ -72,62 +72,66 @@ display: none;
     margin: 2rem 0 4rem;
 }
 
-#temperatureWeek{
-    
+#temperatureWeek {
+
     padding-left: 10%;
     /* transform: rotate(90deg)  it rotates anything good to know!*/
 }
 
-.tableText{
+.tableText {
     color: white;
     font-size: 2em;
-    
+
 }
-h2{
+
+h2 {
     text-align: center !important;
 }
-.tableText2{
+
+.tableText2 {
     color: black !important;
     font-size: 1.2em;
     text-align: center;
 }
 
 
-#navbarSupportedContent{
-color: whitesmoke;
-text-shadow: none !important;
+#navbarSupportedContent {
+    color: whitesmoke;
+    text-shadow: none !important;
 }
 
 a {
     color: white;
 }
-.th-sm{
+
+.th-sm {
     text-align: center;
     white-space: nowrap;
 }
+
 .td-padding {
-padding: 5px 70px !important;
-white-space: nowrap !important;
+    padding: 5px 70px !important;
+    white-space: nowrap !important;
 
 }
 
-#selectedColumn{
+#selectedColumn {
 
-        margin-left:auto; 
-        margin-right:auto;
+    margin-left: auto;
+    margin-right: auto;
 }
 
-#gifLoader img{
- height: 38px;
- width: 101.02px;
- background: white;
-} 
+#gifLoader img {
+    height: 38px;
+    width: 101.02px;
+    background: white;
+}
 
-.sortButton{
-  border: none;
-  background: white;
-  font-size: 1em;
-  padding: 0;
-  height: 1.5em;
-  width: 1.5em;
+.sortButton {
+    border: none;
+    background: white;
+    font-size: 1em;
+    padding: 0;
+    height: 1.5em;
+    width: 1.5em;
 }

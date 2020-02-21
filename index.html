@@ -4,101 +4,111 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="icon" type="image/x-icon" href="img/cloudy.svg"> <title> Weather App</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="icon" type="image/x-icon" href="img/cloudy.svg">
+    <title> Weather App</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" href="css/style.css">
     <title>Document</title>
 </head>
 <body>
-    <header>
-        <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-            <img id="logo" src="img/cloudy.svg" alt="">
-            <a class="navbar-brand" href="img/cloudy.svg"></a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon"></span> 
-            </button>
-          
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-              <ul class="navbar-nav mr-auto">
+<header>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <img id="logo" src="img/cloudy.svg" alt="">
+        <a class="navbar-brand" href="img/cloudy.svg"></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                  <a class="nav-link" href="#">Home </a>
+                    <a class="nav-link" href="#">Home </a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="#">Hourly</a>
+                    <a class="nav-link" href="#">Hourly</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">About</a>
-                  </li>
                 </li>
-              </ul>
-              <form class="form-inline my-2 my-lg-0">
-                <input id="citySearchInput" class="form-control mr-sm-2" type="search" placeholder="Enter City Here" aria-label="Search">
-                <button id="citySearchBtn" type="submit" >Search</button> 
+                </li>
+            </ul>
+            <form class="form-inline my-2 my-lg-0">
+                <input id="citySearchInput" class="form-control mr-sm-2" type="search" placeholder="Enter City Here"
+                       aria-label="Search">
+                <button id="citySearchBtn" type="submit">Search</button>
                 <div id="gifLoader"></div>
-              </form>
-            </div>
-          
-      
-               
-    </header>
-    
-    <div id="pages" class="container">
-  
-      <div class="page">
-        <h1 id="weatherCity"></h1>
-        
-        <div class="row">
-        <div id="temperatureToday" class="col-6">   </div>
-        <div id="temperatureWeek"class="col-6">   </div>
-      </div>
-      </div>
+            </form>
+        </div>
 
-      <div class="page">
+
+</header>
+
+<div id="pages" class="container">
+
+    <div class="page">
+        <h1 id="weatherCity"></h1>
+
+        <div class="row">
+            <div id="temperatureToday" class="col-6"></div>
+            <div id="temperatureWeek" class="col-6"></div>
+        </div>
+    </div>
+
+    <div class="page">
         <h1 id="hourlyWeatherCity"></h1>
         <br>
-        <p style="font-size: 1em; text-align: center;"> <strong>Here you can read the hourly weather report for the following days. Keep in mind that it is not actually every
-          hour, but every 3 hours! </strong></p>  
-          <!-- <div id="hourlyResult"> </div> -->
-          <table  id="selectedColumn" class=" col-md-12 table table-striped table-bordered table-sm" cellspacing="0">
+        <p style="font-size: 1em; text-align: center;"><strong>Here you can read the hourly weather report for the
+            following days. Keep in mind that it is not actually every
+            hour, but every 3 hours! </strong></p>
+        <!-- <div id="hourlyResult"> </div> -->
+        <table id="selectedColumn" class=" col-md-12 table table-striped table-bordered table-sm" cellspacing="0">
             <thead>
-              <tr>
+            <tr>
                 <th class="th-sm">Weather Icon
                 </th>
                 <th class="th-sm">It Looks Like
                 </th>
-                <th class="th-sm">Hourly Weather 
+                <th class="th-sm">Hourly Weather
                 </th>
-                <th class="th-sm">Temperature <button class="sortButton">&#x2BC6;</button> <button class="sortButton">&#x2BC5;</button>
+                <th class="th-sm">Temperature
+                    <button class="sortButton">&#x2BC6;</button>
+                    <button class="sortButton">&#x2BC5;</button>
                 </th>
-                <th class="th-sm">Humidity <button class="sortButton">&#x2BC6;</button> <button class="sortButton">&#x2BC5;</button>
+                <th class="th-sm">Humidity
+                    <button class="sortButton">&#x2BC6;</button>
+                    <button class="sortButton">&#x2BC5;</button>
                 </th>
-                <th class="th-sm">Wind Speed <button class="sortButton">&#x2BC6;</button> <button class="sortButton">&#x2BC5;</button>
+                <th class="th-sm">Wind Speed
+                    <button class="sortButton">&#x2BC6;</button>
+                    <button class="sortButton">&#x2BC5;</button>
                 </th>
-              </tr>
+            </tr>
             </thead>
             <tbody id="hourlyResult">
 
             </tbody>
-          </table>
-      </div>
-
-      <div class="page" >
-        <h1 id="aboutWeatherApp" style="text-align: center;">About WeatherAlert</h1>
-        <br>
-        <p style="font-size: 1.4em; text-align: center;">This project has been built to have real world applications. 
-          <br> This website has been built by <a href="tel:+38971932515"><strong>Muhamed Sakipi</strong></a>.
-          <br> Job requests are accepted at <a href=" mailto:sakipi.mu@gmail.com"><strong>sakipi.mu@gmail.com</strong></a>.</p>
-      </div>
-      
+        </table>
     </div>
 
+    <div class="page">
+        <h1 id="aboutWeatherApp" style="text-align: center;">About WeatherAlert</h1>
+        <br>
+        <p style="font-size: 1.4em; text-align: center;">This project has been built to have real world applications.
+            <br> This website has been built by <a href="tel:+38971932515"><strong>Muhamed Sakipi</strong></a>.
+            <br> Job requests are accepted at <a href=" mailto:sakipi.mu@gmail.com"><strong>sakipi.mu@gmail.com</strong></a>.
+        </p>
+    </div>
+
+</div>
 
 
-
-
-    <script src="https://code.jquery.com/jquery-3.4.1.js"
-    integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.4.1.js"
+        integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script>
 <script src="javascript.js"></script>
 </body>
 </html>
