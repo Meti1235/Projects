@@ -36,8 +36,7 @@ table, th, td {
 /* it hides all the other siblings but the first one */
 .page + .page{ 
 display: none;
-color: black !important;
-text-shadow: none !important;
+
 }
 
 .table{
@@ -68,7 +67,7 @@ text-shadow: none !important;
    
 }
 
-#weatherCity {
+#weatherCity, #hourlyWeatherCity, #aboutWeatherApp {
     text-align: center;
     margin: 2rem 0 4rem;
 }
@@ -93,17 +92,6 @@ h2{
     text-align: center;
 }
 
-#hourlyResult{
-    text-align: center;
-    position: relative;
-    right: 5%;
-    color: black !important;
-}
-#hourlyWeatherCity{
-    
-    text-align: center;
-    margin-bottom: 2.5rem;
-}
 
 #navbarSupportedContent{
 color: whitesmoke;
@@ -111,5 +99,32 @@ text-shadow: none !important;
 }
 
 a {
-    color: black;
+    color: white;
+}
+.th-sm{
+    text-align: center;
+    white-space: nowrap;
+}
+.td-padding {
+padding: 5px 70px !important;
+
+}
+
+#selectedColumn{
+
+        margin-left:auto; 
+        margin-right:auto;
+}
+
+#gifLoader img{
+ height: 28px;
+} 
+
+.sortButton{
+  border: 1px solid white;
+  background: none;
+  font-size: 1em;
+  padding: 0;
+  height: 1.5em;
+  width: 1.5em;
 }

@@ -15,7 +15,7 @@
             <img id="logo" src="img/cloudy.svg" alt="">
             <a class="navbar-brand" href="img/cloudy.svg"></a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon"></span>
+              <span class="navbar-toggler-icon"></span> 
             </button>
           
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -33,11 +33,12 @@
               </ul>
               <form class="form-inline my-2 my-lg-0">
                 <input id="citySearchInput" class="form-control mr-sm-2" type="search" placeholder="Enter City Here" aria-label="Search">
-                <button id="citySearchBtn" type="submit">Search</button>
+                <button id="citySearchBtn" type="submit">Search</button> 
+                <div id="gifLoader"></div>
               </form>
             </div>
           
-        
+      
                
     </header>
     
@@ -45,6 +46,8 @@
   
       <div class="page">
         <h1 id="weatherCity"></h1>
+        <div id="gifLoader"></div>
+        
         <div class="row">
         <div id="temperatureToday" class="col-6">   </div>
         <div id="temperatureWeek"class="col-6">   </div>
@@ -56,11 +59,32 @@
         <br>
         <p style="font-size: 1em; text-align: center;"> <strong>Here you can read the hourly weather report for the following days. Keep in mind that it is not actually every
           hour, but every 3 hours! </strong></p>  
-          <div id="hourlyResult"> </div>
+          <!-- <div id="hourlyResult"> </div> -->
+          <table  id="selectedColumn" class=" col-md-12 table table-striped table-bordered table-sm" cellspacing="0">
+            <thead>
+              <tr>
+                <th class="th-sm">Weather Icon
+                </th>
+                <th class="th-sm">It Looks Like
+                </th>
+                <th class="th-sm">Hourly Weather<a href=""></a>
+                </th>
+                <th class="th-sm">Temperature<button class="sortButton">&#x2BC6;</button><button class="sortButton">&#x2BC5;</button>
+                </th>
+                <th class="th-sm">Humidity<button class="sortButton">&#x2BC6;</button><button class="sortButton">&#x2BC5;</button>
+                </th>
+                <th class="th-sm">Wind Speed<button class="sortButton">&#x2BC6;</button><button class="sortButton">&#x2BC5;</button>
+                </th>
+              </tr>
+            </thead>
+            <tbody id="hourlyResult">
+
+            </tbody>
+          </table>
       </div>
 
       <div class="page" >
-        <h1 style="text-align: center;">About WeatherAlert</h1>
+        <h1 id="aboutWeatherApp" style="text-align: center;">About WeatherAlert</h1>
         <br>
         <p style="font-size: 1.4em; text-align: center;">This project has been built to have real world applications. 
           <br> This website has been built by <a href="tel:+38971932515"><strong>Muhamed Sakipi</strong></a>.

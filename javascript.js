@@ -12,8 +12,10 @@ let navService = {
     weatherCity: document.getElementById("weatherCity"),
     hourlyWeatherCity: document.getElementById("hourlyWeatherCity"),
     hourlyResult: document.getElementById("hourlyResult"),
+    sortButton: document.getElementsByClassName("sortButton"),
+    gifLoader: document.getElementById("gifLoader"),
 
-    activeNav: function(item){
+    activeNav: function(item){ 
         for (let navItem of this.navItems) {
             navItem.classList.remove("active");
         }
@@ -36,12 +38,15 @@ let navService = {
         
         this.citySearchBtn.addEventListener("click", function(e){
             e.preventDefault();
-           
             //we are taking the first letter of the word and Capitalizing it "S"+"kopje" we are cutting the first letter from the word and adding both parts together
          if(citySearchInput.value === ''){
-           alert("Please enter a City Name")
-         }
-         weatherService.city = navService.citySearchInput.value[0].toUpperCase() + navService.citySearchInput.value.slice(1);
+          alert("Please enter a City Name")
+         } // build a function that splits on space gets 3 words then uppercase and slice then add 
+         
+         let splitCityName = navService.citySearchInput.value.split(" ")
+        let splitCityName1 = splitCityName.map(splitCityName => splitCityName[0].toUpperCase()+splitCityName.slice(1))
+         weatherService.city = splitCityName1.join(" ")
+
            if(!allCityNames.includes(weatherService.city)){
             return alert("Please enter a Valid! City Name");
            } 
@@ -52,7 +57,7 @@ let navService = {
             
     })
     },
-
+   
     getTemperature: function(response){
                 let  tempArray = response.list
                 let combinedTempArray = []
@@ -179,6 +184,8 @@ let navService = {
                 if(forCounter2 > 39) return  ''
                 if(forCounter2 < 39) return this.getWeekWeather(response, forCounter1+8, forCounter2+8,iconCounter3+8,dayCounter4+1); //increasing the counter values
         },
+        
+
     //pringing table with a for loop
     getHourlyWeather: function(response){
         let combinedHourlyArray = response.list
@@ -195,45 +202,90 @@ let navService = {
             dateArray.push(combinedHourlyArray[i].dt_txt.slice(10))  
             humidityArray.push(combinedHourlyArray[i].main.humidity) 
             windSpeedArray.push(combinedHourlyArray[i].wind.speed) 
-           }
+           };
+
+    this.addSortEventListener(hourlyTempArray,humidityArray,windSpeedArray,iconArray,descriptionArray,dateArray);
+          
 
            for (let i=0; i <8; i++){
            this.hourlyResult.innerHTML += 
            `
-           <div class="row">
-            <div class="col-md-2 tableText2" > <img src="http://openweathermap.org/img/w/${iconArray[i]}.png" alt=""></img>  </div>
-            <div class="col-md-2 tableText2"> <b> It looks like</b> <br> ${descriptionArray[i]}  </div>
-            <div class="col-md-2 tableText2"> <b> Houlry weather</b> <br> ${dateArray[i]} </div>
-            <div class="col-md-2 tableText2"> <b> Temperature of</b> <br> ${hourlyTempArray[i]}°C   </div>
-            <div class="col-md-2 tableText2"> <b> Humidity of </b> <br>${humidityArray[i]}%  </div>
-            <div class="col-md-2 tableText2"> <b> Wind speed of </b> <br>${windSpeedArray[i]} m/s </div>
-        </div>
+           <tr>
+      <td class="td-padding"><img src="http://openweathermap.org/img/w/${iconArray[i]}.png" alt=""></img></td>
+      <td class="td-padding">${descriptionArray[i]}</td>
+      <td class="td-padding">${dateArray[i]}</td>
+      <td class="td-padding">${hourlyTempArray[i]}°C</td>
+      <td class="td-padding">${humidityArray[i]}%</td>
+      <td class="td-padding">${windSpeedArray[i]}m/s</td>
+    </tr>
           `
-    
+        }   
         
-        }
+},
+
+addSortEventListener: function(hourlyTempArray,humidityArray,windSpeedArray,iconArray,descriptionArray,dateArray){
+    for (let i = 0; i < this.sortButton.length; i++){
+        this.sortButton[i].addEventListener("click", function(){
+            console.log("button works")
+
+            newhourlyTempArray = [...hourlyTempArray]
+            newhourlyTempArray.sort(function(a, b){return a-b});
+ 
+            newhumidityArray = [...humidityArray];
+            newhumidityArray.sort(function(a, b){return a-b});
+
+            newwindSpeedArray = [...windSpeedArray];
+            newwindSpeedArray.sort(function(a, b){return a-b});
+
+            hourlyResult.innerHTML =''
+            
+            for (let i=0; i <8; i++){
+    
+                hourlyResult.innerHTML += 
+                `
+                <tr>
+           <td class="td-padding"><img src="http://openweathermap.org/img/w/${iconArray[i]}.png" alt=""></img></td>
+           <td class="td-padding">${descriptionArray[i]}</td>
+           <td class="td-padding">${dateArray[i]}</td>
+           <td class="td-padding">${newhourlyTempArray[i]}°C</td>
+           <td class="td-padding">${newhumidityArray[i]}%</td>
+           <td class="td-padding">${newwindSpeedArray[i]}m/s</td>
+         </tr>
+               `
+             }   
+           
+        })
+    }
 }
 
-
-
 }
-
+let currentData ={};
 let weatherService = {
     apiKey: "02c381cd2d2a71e1d009fd2998f2dca8",
     city: "Skopje",
     apiUrl: "https://api.openweathermap.org/data/2.5/forecast",
+    
     getData: function(){
+        navService.gifLoader.innerHTML = `<img src="img/loading.gif" alt="">`
+        navService.citySearchBtn.style.display = "none"
         $.ajax({
             url: `${this.apiUrl}?q=${this.city}&units=metric&APPID=${this.apiKey}`,
+            
             success: function (response) {
                 console.log('The request succeeded! 1');
+                currentData = response.list;
                 navService.getTemperature(response);
                 navService.getHourlyWeather(response);
                 navService.getWeekWeather(response,8,16,0,1); //hardcoding the counters for the recursive function
+                console.log(currentData)
+                navService.gifLoader.innerHTML = ''
+                navService.citySearchBtn.style.display = "block"
             }, 
             error: function(response){
                 console.log('The request failed!');
                 console.log(response.responseText);
+                navService.gifLoader.innerHTML = ''
+                navService.citySearchBtn.style.display = "block"
             }
         });
     }
@@ -258,6 +310,7 @@ let cityNameCall = { //getting all the city names in the world properly spelled(
                 });
                 // console.log(allCityNames) all city name array
                 navService.createEventListener(allCityNames)
+                console.log(allCityNames)  //try to push all of this into a new jason of just a string with all the names and parse it back.
 
                 
             }, 
