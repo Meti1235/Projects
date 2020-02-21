@@ -312,7 +312,7 @@ let navService = {
 
 let weatherService = {
     apiKey: "02c381cd2d2a71e1d009fd2998f2dca8",
-    city: "Skopje",
+    city: "Bucharest",
     apiUrl: "https://api.openweathermap.org/data/2.5/forecast",
 
     getData: function () {
