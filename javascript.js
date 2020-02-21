@@ -40,13 +40,14 @@ let navService = {
             e.preventDefault();
             //we are taking the first letter of the word and Capitalizing it "S"+"kopje" we are cutting the first letter from the word and adding both parts together
          if(citySearchInput.value === ''){
-          alert("Please enter a City Name")
+         return alert("Please enter a City Name")
          } // build a function that splits on space gets 3 words then uppercase and slice then add 
          
-         let splitCityName = navService.citySearchInput.value.split(" ")
-        let splitCityName1 = splitCityName.map(splitCityName => splitCityName[0].toUpperCase()+splitCityName.slice(1))
-         weatherService.city = splitCityName1.join(" ")
-
+         weatherService.city = navService.citySearchInput.value
+         .split(' ')
+         .map(splitCityName => splitCityName.charAt(0).toUpperCase()+splitCityName.substr(1))
+         .join(' ');
+         
            if(!allCityNames.includes(weatherService.city)){
             return alert("Please enter a Valid! City Name");
            } 
@@ -266,7 +267,7 @@ let weatherService = {
     apiUrl: "https://api.openweathermap.org/data/2.5/forecast",
     
     getData: function(){
-        navService.gifLoader.innerHTML = `<img src="img/loading.gif" alt="">`
+        navService.gifLoader.innerHTML = `<img src="img/loadingBlue.gif" alt="">`
         navService.citySearchBtn.style.display = "none"
         $.ajax({
             url: `${this.apiUrl}?q=${this.city}&units=metric&APPID=${this.apiKey}`,

@@ -118,8 +118,9 @@ white-space: nowrap !important;
 }
 
 #gifLoader img{
- height: 35px;
- width: 100px;
+ height: 38px;
+ width: 101.02px;
+ background: white;
 } 
 
 .sortButton{
