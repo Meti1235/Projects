@@ -8,18 +8,17 @@
 
 ul li{
     display: inline-block;
-    margin-right: 59px;
-    margin-left: 10px;
+    margin-left: 65px;
     font-size: 20px;
-
-
 }
+
 header{
-    padding: 60px 0 60px 0;
+    padding: 71px 0 95px 0;
     white-space: nowrap;
+
 }
 
-.list1 li a {
+#list1 li a {
     color: #bab8b8;
 }
 
@@ -30,33 +29,43 @@ header{
     color: #091e40;
     font-weight: 800;
     text-align: left;
-    padding-bottom: 75px;
-    margin: 0;
-
-    
+    padding-bottom: 77px;
+    margin: 0;    
 }
+#h1Amazing {
+    font-size: 50px;
+    letter-spacing: 1px;
+    line-height: 62px;
+    color: #091e40;
+    font-weight: 600;
+    text-align: left;
+}
+
+
 .travelh1 + p{
     padding-bottom: 100px;
     margin: 0;
 }
 
-.list1 li a:hover { 
+#list1 li a:hover { 
     color: #3984f3;
     text-decoration: none;
+
 }
 
 #logo{
-    height: 48px;
+    height: 50px;
     width: 178px;
+    
 }
 
 
 #signInButton{
-    border: 2px solid  #3984f3;
+    border: 3px solid  #3984f3;
     color: #3984f3;
+    width: 151px;
+    height: 55px;
     background-color: #fff;
-    width: 150px;
-    height: 57px;
 }
 
 
@@ -74,17 +83,13 @@ html, body{
 }
 
 
-#backgroundImg{
-    width: 1004px;
-    height: 1062px;
- } 
-
-#signUpNowButton{
+#signUpNowButton, #exproleButton{
     border: 2px solid #3984f3;
     color: #fff;
     background-color: #3984f3;
     height: 3.5625rem;
     width: 12.625rem;
+    font-size: 20px;
    
 }
 
@@ -101,9 +106,45 @@ font-size: 22px;
 letter-spacing: 0px;
 line-height: 35px;
 color: #81858e;
+font-weight: 400;
 }
 
-#section1{
+#section1 {
 position: relative;
 bottom: 57px;
 }
+
+.active a {
+    color: #3984f3 !important;
+}
+#paddingSection{
+padding-bottom: 155px;
+}
+
+/* .articleImg img {
+width: 371px;
+height: 499px;
+padding: 10px;
+}
+.articleImg2 {
+padding: 20px 50px;
+} */
+
+.square{
+    width: 371px; 
+    height: 499px;
+    border-color: #666 #1c87c9;
+    border-image: none;
+    border-radius: 0 0 0 0;
+    border-style: solid;
+    border-width: 30px;
+    overflow: hidden;
+    padding: 0;
+    z-index: 1;
+    }
+
+    .square > img{
+        width: 371px; 
+    height: 499px;
+    z-index: -1;
+    }
