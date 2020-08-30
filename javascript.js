@@ -1,36 +1,8 @@
+// console.log("live") //API personalized key under
 // https://api.openweathermap.org/data/2.5/forecast?q=skopje&units=metric&APPID=02c381cd2d2a71e1d009fd2998f2dca8
 
-let currentData = {};
-
-let cityNameService = {
-    allCityNames: null,
-
-    sanitizeCityName: (cityName) => {
-        return cityName
-            .replace(/(^\s+)|(\s+$)/g, '')
-            .replace(/\s{2,}/g, ' ')
-            .split(' ')
-            .map(splitCityName => splitCityName.charAt(0).toUpperCase() + splitCityName.substr(1))
-            .join(' ');
-    },
-
-    apiUrl: 'https://raw.githubusercontent.com/lutangar/cities.json/master/cities.json',
-    fetchCityNames: function () {
-        $.ajax({
-            url: this.apiUrl,
-            success: function (response) {
-                const resultParsed = JSON.parse(response);
-                cityNameService.allCityNames = resultParsed.map((record) => record.name);
-            },
-            error: function (response) {
-                console.log('The request failed!');
-                console.log(response.responseText);
-            }
-        });
-    }
-};
-
 let navService = {
+
     navItems: document.getElementsByClassName("nav-item"),
     citySearchInput: document.getElementById("citySearchInput"),
     citySearchBtn: document.getElementById("citySearchBtn"),
@@ -49,15 +21,13 @@ let navService = {
         }
         item.classList.add("active");
     },
-
     showPages: function (page) {
         for (let pageElement of this.pages) {
             pageElement.style.display = "none";
         }
         page.style.display = "block";
     },
-
-    createEventListener: function () {
+    createEventListener: function (allCityNames) {
         for (let i = 0; i < this.navItems.length; i++) {
             this.navItems[i].addEventListener("click", function () {
                 // this in addEventListener points to the item that has the event listener
@@ -66,35 +36,27 @@ let navService = {
             })
         }
 
-        this.citySearchBtn.addEventListener('click', function (e) {
+        this.citySearchBtn.addEventListener("click", function (e) {
             e.preventDefault();
-            if (!cityNameService.allCityNames) {
-                alert('This application is slow and takes a long time to load city names. Please be patient :(');
-                return;
+            //we are taking the first letter of the word and Capitalizing it "S"+"kopje" we are cutting the first letter from the word and adding both parts together
+            if (citySearchInput.value === '') {
+                return alert("Please enter a City Name")
+            } // build a function that splits on space gets 3 words then uppercase and slice then add
+
+            weatherService.city = navService.citySearchInput.value
+                .split(' ')
+                .map(splitCityName => splitCityName.charAt(0).toUpperCase() + splitCityName.substr(1))
+                .join(' ');
+
+            if (!allCityNames.includes(weatherService.city)) {
+                return alert("Please enter a Valid! City Name");
             }
-
-            const inputName = $('#citySearchInput').val().trim();
-            if (!inputName) {
-                alert("Please enter a City Name");
-                return;
-            }
-
-            const sanitizedName = cityNameService.sanitizeCityName(inputName);
-
-            const known = cityNameService.allCityNames.includes(sanitizedName);
-            if (!known) {
-                alert("Please enter a Valid! City Name");
-                return;
-            }
-
             navService.temperatureToday.innerHTML = '';
             navService.temperatureWeek.innerHTML = '';
             navService.hourlyResult.innerHTML = '';
-
-            weatherService.city = sanitizedName;
             weatherService.getData();
 
-        }, true);
+        })
     },
 
     getTemperature: function (response) {
@@ -203,9 +165,9 @@ let navService = {
 
         let weekendArray = ["Tomorrow", "Monday", "Tuesday", "Wednesday", "Thursday", "Firday", "Saturday", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Firday", "Saturday", "Sunday"]
         let todaysDate = new Date();
-        console.log('todaysDate', todaysDate)
+        console.log(todaysDate)
         let todaysDay = todaysDate.getDay()
-        console.log('todaysDay', todaysDay)
+        console.log(todaysDay)
         let weatherDay = weekendArray[todaysDay + dayCounter4]
 
 
@@ -236,17 +198,18 @@ let navService = {
         let hourlyTempArray = [];
         let iconArray = [];
         let descriptionArray = [];
-        const dateArray = [];
+        let dateArray = [];
         let humidityArray = [];
         let windSpeedArray = [];
         for (let i = 0; i < 8; i++) {
             hourlyTempArray.push(Math.round(combinedHourlyArray[i].main.temp_max))
             iconArray.push(combinedHourlyArray[i].weather[0].icon)
             descriptionArray.push(combinedHourlyArray[i].weather[0].description)
-            dateArray.push(combinedHourlyArray[i].dt_txt.slice(10));
-            humidityArray.push(combinedHourlyArray[i].main.humidity);
+            dateArray.push(combinedHourlyArray[i].dt_txt.slice(10))
+            humidityArray.push(combinedHourlyArray[i].main.humidity)
             windSpeedArray.push(combinedHourlyArray[i].wind.speed)
         }
+        ;
 
         this.addSortEventListener(hourlyTempArray, humidityArray, windSpeedArray, iconArray, descriptionArray, dateArray);
 
@@ -270,7 +233,7 @@ let navService = {
     addSortEventListener: function (hourlyTempArray, humidityArray, windSpeedArray, iconArray, descriptionArray, dateArray) {
         for (let i = 0; i < this.sortButton.length; i++) {
             this.sortButton[i].addEventListener("click", function () {
-                console.log(`Sort button #${i} clicked`)
+                console.log("button works")
 
                 newhourlyTempArray = [...hourlyTempArray]
                 newhourlyTempArray.sort(function (a, b) {
@@ -309,10 +272,10 @@ let navService = {
     }
 
 }
-
+let currentData = {};
 let weatherService = {
     apiKey: "02c381cd2d2a71e1d009fd2998f2dca8",
-    city: "Bucharest",
+    city: "Skopje",
     apiUrl: "https://api.openweathermap.org/data/2.5/forecast",
 
     getData: function () {
@@ -322,44 +285,55 @@ let weatherService = {
             url: `${this.apiUrl}?q=${this.city}&units=metric&APPID=${this.apiKey}`,
 
             success: function (response) {
-                console.log('weatherService: The request succeeded! 1');
+                console.log('The request succeeded! 1');
                 currentData = response.list;
                 navService.getTemperature(response);
                 navService.getHourlyWeather(response);
-                navService.getWeekWeather(response, 8, 16, 0, 1); // hardcoding the counters for the recursive function
-                console.log('weatherService: currentData is', currentData)
+                navService.getWeekWeather(response, 8, 16, 0, 1); //hardcoding the counters for the recursive function
+                console.log(currentData)
                 navService.gifLoader.innerHTML = ''
                 navService.citySearchBtn.style.display = "block"
             },
             error: function (response) {
-                console.log('weatherService: The request failed!');
+                console.log('The request failed!');
                 console.log(response.responseText);
                 navService.gifLoader.innerHTML = ''
                 navService.citySearchBtn.style.display = "block"
             }
         });
     }
-};
-
-let locationService = {
-    getClientLocation(callback) {
-        $.ajax({
-            url: 'http://ip-api.com/json/?fields=city,country',
-            success: (response) => callback(null, response),
-            error: callback
-        });
-    }
-};
+}
 
 navService.createEventListener();
-cityNameService.fetchCityNames();
+weatherService.getData()
 
-locationService.getClientLocation((err, location) => {
-    if (err) {
-        console.error(`Failed to get the user's city, falling back to Skopje. Error: ${err.responseText}`);
-        weatherService.city = 'Skopje';
-    } else {
-        weatherService.city = location.city;
+let cityNameCall = { //getting all the city names in the world properly spelled(use google to find the correct spelling)
+    apiUrl: "https://raw.githubusercontent.com/lutangar/cities.json/master/cities.json",
+    getCity: function () {
+        $.ajax({
+            url: this.apiUrl,
+            success: function (response) {
+                console.log('The request succeeded! 2');
+
+                let resultParsed = JSON.parse(response);
+
+                let allCityNames = [];
+                resultParsed.forEach(function (resultParsed) {
+                    allCityNames.push(resultParsed.name);
+                });
+                // console.log(allCityNames) all city name array
+                navService.createEventListener(allCityNames)
+                console.log(allCityNames)  //try to push all of this into a new jason of just a string with all the names and parse it back.
+
+
+            },
+            error: function (response) {
+                console.log('The request failed!');
+                console.log(response.responseText);
+            }
+        });
     }
-    weatherService.getData();
-});
+}
+
+cityNameCall.getCity();
+
